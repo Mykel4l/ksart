@@ -1,0 +1,14 @@
+# Robots.txt for Ksenia Art
+# https://kseniaart.studio
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kseniaart.studio/sitemap.xml
+
+# Disallow non-content directories
+Disallow: /images/
+
+# Crawl-delay (optional, polite)
+Crawl-delay: 1

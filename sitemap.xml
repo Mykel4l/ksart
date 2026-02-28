@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://kseniaart.studio/</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/artwork1.jpeg</image:loc>
+            <image:title>Ksenia Art — Expressive Artwork</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/me(ksenia!).jpeg</image:loc>
+            <image:title>Ksenia — Artist Portrait</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/painting1.jpeg</image:loc>
+            <image:title>Painting by Ksenia</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/painting2.jpeg</image:loc>
+            <image:title>Painting by Ksenia</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/sketch1.jpeg</image:loc>
+            <image:title>Sketch by Ksenia</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/sketch2.jpeg</image:loc>
+            <image:title>Sketch by Ksenia</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/artwork2.jpeg</image:loc>
+            <image:title>Artwork by Ksenia</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/artwork3.jpeg</image:loc>
+            <image:title>Artwork by Ksenia</image:title>
+        </image:image>
+    </url>
+
+    <!-- Art Blog -->
+    <url>
+        <loc>https://kseniaart.studio/blog.html</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/painting2.jpeg</image:loc>
+            <image:title>Art Blog — Ksenia Art</image:title>
+        </image:image>
+    </url>
+
+    <!-- Travel Blog -->
+    <url>
+        <loc>https://kseniaart.studio/travel.html</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/artwork2.jpeg</image:loc>
+            <image:title>Travel Blog — Art-Inspired Adventures</image:title>
+        </image:image>
+    </url>
+
+    <!-- Workshops -->
+    <url>
+        <loc>https://kseniaart.studio/workshops.html</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/painting1.jpeg</image:loc>
+            <image:title>Art Workshops by Ksenia</image:title>
+        </image:image>
+    </url>
+
+    <!-- Hire / Commissions -->
+    <url>
+        <loc>https://kseniaart.studio/hire.html</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://kseniaart.studio/img/artwork3.jpeg</image:loc>
+            <image:title>Hire Ksenia — Art Commissions</image:title>
+        </image:image>
+    </url>
+
+    <!-- Book Now -->
+    <url>
+        <loc>https://kseniaart.studio/book.html</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+</urlset>

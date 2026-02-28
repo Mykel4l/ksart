@@ -110,17 +110,17 @@
     </div>
 
     <!-- Page Hero -->
-    <section class="page-hero" style="position: relative; overflow: hidden;">
-        <img src="img/sketch2.jpeg" alt="Book now background — detailed sketch by Ksenia" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; filter: blur(3px);">
-        <div class="container" style="position: relative; z-index: 2;">
+    <section class="page-hero book-hero">
+        <img src="img/sketch2.jpeg" alt="Book now background — detailed sketch by Ksenia" class="book-hero-bg">
+        <div class="container book-hero-content">
             <span class="section-tag"><i class="fas fa-calendar-check"></i> Book Now</span>
             <h1 class="section-title">Reserve Your <span class="accent">Spot</span></h1>
-            <p class="section-desc" style="margin: 0 auto;">Book a workshop, private session, or commission directly through the calendar below.</p>
+            <p class="section-desc">Book a workshop, private session, or commission directly through the calendar below.</p>
         </div>
     </section>
 
     <!-- Bokun Widget Section -->
-    <section style="padding: 80px 0;">
+    <section class="book-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Schedule</span>
@@ -128,7 +128,7 @@
             </div>
 
             <!-- Bokun Booking Widget Placeholder -->
-            <div class="bokun-widget-wrapper" style="max-width: 900px; margin: 0 auto;">
+            <div class="bokun-widget-wrapper">
                 <div class="bokun-widget-placeholder" id="bokunWidget">
                     <!--
                     ========================================================
@@ -148,89 +148,60 @@
                     ========================================================
                     -->
 
-                    <div style="
-                        background: var(--dark-2);
-                        border: 2px dashed rgba(230, 57, 70, 0.3);
-                        border-radius: 16px;
-                        padding: 60px 40px;
-                        text-align: center;
-                        min-height: 500px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 24px;
-                    ">
-                        <div style="
-                            width: 80px;
-                            height: 80px;
-                            border-radius: 50%;
-                            background: rgba(230, 57, 70, 0.1);
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            margin-bottom: 8px;
-                        ">
-                            <i class="fas fa-calendar-alt" style="font-size: 2rem; color: var(--primary);"></i>
+                    <div class="bokun-placeholder">
+                        <div class="bokun-icon-wrap">
+                            <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white);">Bokun Booking Widget</h3>
-                        <p style="color: var(--gray); max-width: 500px; line-height: 1.7;">
+                        <h3 class="bokun-title">Bokun Booking Widget</h3>
+                        <p class="bokun-desc">
                             The booking calendar will appear here once the Bokun widget is connected.<br>
                             Visitors will be able to browse available dates, select experiences, and complete their booking.
                         </p>
 
                         <!-- Mock Calendar Preview -->
-                        <div style="
-                            display: grid;
-                            grid-template-columns: repeat(7, 1fr);
-                            gap: 6px;
-                            max-width: 350px;
-                            width: 100%;
-                            margin-top: 16px;
-                            opacity: 0.4;
-                        ">
-                            <span style="color: var(--gray); font-size: 0.75rem; text-align: center; padding: 4px;">Mon</span>
-                            <span style="color: var(--gray); font-size: 0.75rem; text-align: center; padding: 4px;">Tue</span>
-                            <span style="color: var(--gray); font-size: 0.75rem; text-align: center; padding: 4px;">Wed</span>
-                            <span style="color: var(--gray); font-size: 0.75rem; text-align: center; padding: 4px;">Thu</span>
-                            <span style="color: var(--gray); font-size: 0.75rem; text-align: center; padding: 4px;">Fri</span>
-                            <span style="color: var(--gray); font-size: 0.75rem; text-align: center; padding: 4px;">Sat</span>
-                            <span style="color: var(--gray); font-size: 0.75rem; text-align: center; padding: 4px;">Sun</span>
+                        <div class="mock-calendar">
+                            <span class="cal-header">Mon</span>
+                            <span class="cal-header">Tue</span>
+                            <span class="cal-header">Wed</span>
+                            <span class="cal-header">Thu</span>
+                            <span class="cal-header">Fri</span>
+                            <span class="cal-header">Sat</span>
+                            <span class="cal-header">Sun</span>
                             <!-- Row 1 -->
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;"></span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;"></span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">1</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">2</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">3</span>
-                            <span style="background: rgba(230,57,70,0.15); border-radius: 6px; padding: 8px; text-align: center; color: var(--primary); font-size: 0.85rem; font-weight: 600;">4</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">5</span>
+                            <span class="cal-day"></span>
+                            <span class="cal-day"></span>
+                            <span class="cal-day">1</span>
+                            <span class="cal-day">2</span>
+                            <span class="cal-day">3</span>
+                            <span class="cal-day cal-day--active">4</span>
+                            <span class="cal-day">5</span>
                             <!-- Row 2 -->
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">6</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">7</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">8</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">9</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">10</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">11</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">12</span>
+                            <span class="cal-day">6</span>
+                            <span class="cal-day">7</span>
+                            <span class="cal-day">8</span>
+                            <span class="cal-day">9</span>
+                            <span class="cal-day">10</span>
+                            <span class="cal-day">11</span>
+                            <span class="cal-day">12</span>
                             <!-- Row 3 -->
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">13</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">14</span>
-                            <span style="background: rgba(230,57,70,0.15); border-radius: 6px; padding: 8px; text-align: center; color: var(--primary); font-size: 0.85rem; font-weight: 600;">15</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">16</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">17</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">18</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">19</span>
+                            <span class="cal-day">13</span>
+                            <span class="cal-day">14</span>
+                            <span class="cal-day cal-day--active">15</span>
+                            <span class="cal-day">16</span>
+                            <span class="cal-day">17</span>
+                            <span class="cal-day">18</span>
+                            <span class="cal-day">19</span>
                             <!-- Row 4 -->
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">20</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">21</span>
-                            <span style="background: rgba(230,57,70,0.15); border-radius: 6px; padding: 8px; text-align: center; color: var(--primary); font-size: 0.85rem; font-weight: 600;">22</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">23</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">24</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">25</span>
-                            <span style="background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; text-align: center; color: var(--gray); font-size: 0.85rem;">26</span>
+                            <span class="cal-day">20</span>
+                            <span class="cal-day">21</span>
+                            <span class="cal-day cal-day--active">22</span>
+                            <span class="cal-day">23</span>
+                            <span class="cal-day">24</span>
+                            <span class="cal-day">25</span>
+                            <span class="cal-day">26</span>
                         </div>
 
-                        <p style="color: rgba(255,255,255,0.3); font-size: 0.8rem; margin-top: 8px;"><i class="fas fa-info-circle"></i> Preview only — connect Bokun to enable live booking</p>
+                        <p class="bokun-note"><i class="fas fa-info-circle"></i> Preview only — connect Bokun to enable live booking</p>
                     </div>
                 </div>
             </div>
@@ -238,26 +209,26 @@
     </section>
 
     <!-- Alternative Contact -->
-    <section style="padding: 80px 0; background: var(--dark-2);">
+    <section class="book-contact-section">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Contact</span>
                 <h2 class="section-title">Prefer to <span class="accent">Reach Out?</span></h2>
-                <p class="section-desc" style="margin: 0 auto;">Can't find the right time or have a special request? Get in touch directly.</p>
+                <p class="section-desc">Can't find the right time or have a special request? Get in touch directly.</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 800px; margin: 0 auto;">
-                <div class="service-card" style="text-align: center; background: var(--dark); border: 1px solid rgba(255,255,255,0.08);">
+            <div class="book-contact-grid">
+                <div class="service-card book-contact-card">
                     <div class="service-icon"><i class="fas fa-envelope"></i></div>
                     <h3>Email Me</h3>
                     <p>Drop me a line with your idea or question and I'll get back within 24 hours.</p>
-                    <a href="mailto:kseniaart134@gmail.com" class="btn btn-outline" style="margin-top: 16px;">kseniaart134@gmail.com</a>
+                    <a href="mailto:kseniaart134@gmail.com" class="btn btn-outline book-contact-btn">kseniaart134@gmail.com</a>
                 </div>
-                <div class="service-card" style="text-align: center; background: var(--dark); border: 1px solid rgba(255,255,255,0.08);">
+                <div class="service-card book-contact-card">
                     <div class="service-icon"><i class="fas fa-comment-dots"></i></div>
                     <h3>Hire Me</h3>
                     <p>Looking for a custom commission or collaboration? Fill out the project form.</p>
-                    <a href="hire.html" class="btn btn-primary" style="margin-top: 16px;">Go to Hire Page</a>
+                    <a href="hire.html" class="btn btn-primary book-contact-btn">Go to Hire Page</a>
                 </div>
             </div>
         </div>
@@ -314,6 +285,7 @@
         </div>
     </footer>
 
+    <script src="js/api.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

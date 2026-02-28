@@ -1,0 +1,19 @@
+{
+  "name": "ksart",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ksenia Art — Dynamic Portfolio & Creative Studio (Cloudflare Workers + D1)",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "db:create": "wrangler d1 create ksart-db",
+    "db:migrate": "wrangler d1 execute ksart-db --file=schema.sql",
+    "db:migrate:local": "wrangler d1 execute ksart-db --file=schema.sql --local",
+    "db:seed": "wrangler d1 execute ksart-db --file=schema.sql",
+    "db:query": "wrangler d1 execute ksart-db --command"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

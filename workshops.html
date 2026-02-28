@@ -180,17 +180,17 @@
     </div>
 
     <!-- Page Hero -->
-    <section class="page-hero" style="position: relative; overflow: hidden;">
-        <img src="img/painting1.jpeg" alt="Art workshops background — colourful painting by Ksenia" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; filter: blur(3px);">
-        <div class="container" style="position: relative; z-index: 2;">
+    <section class="page-hero page-hero--bg">
+        <img src="img/painting1.jpeg" alt="Art workshops background — colourful painting by Ksenia" class="page-hero-bg-img">
+        <div class="container">
             <span class="section-tag"><i class="fas fa-paint-brush"></i> Workshops</span>
             <h1 class="section-title">Learn, Create &<br><span class="accent">Be Inspired</span></h1>
-            <p class="section-desc" style="margin: 0 auto;">Join my hands-on art workshops — from beginner-friendly sessions to advanced masterclasses. All materials included.</p>
+            <p class="section-desc section-desc--centered">Join my hands-on art workshops — from beginner-friendly sessions to advanced masterclasses. All materials included.</p>
         </div>
     </section>
 
     <!-- Upcoming Workshops -->
-    <section style="padding: 80px 0;">
+    <section class="section-pad">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Upcoming</span>
@@ -324,7 +324,7 @@
     </section>
 
     <!-- What to Expect -->
-    <section style="padding: 80px 0; background: var(--dark-2);">
+    <section class="section-pad section-bg-alt">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Experience</span>
@@ -356,7 +356,7 @@
     </section>
 
     <!-- Private Workshops -->
-    <section style="padding: 80px 0;">
+    <section class="section-pad">
         <div class="container">
             <div class="featured-card">
                 <div class="featured-card-img">
@@ -366,13 +366,13 @@
                     <span class="featured-badge"><i class="fas fa-star"></i> Private Sessions</span>
                     <h3>Book a Private Workshop</h3>
                     <p>Perfect for team building, birthday parties, hen nights, or a special experience with friends. I'll design a custom workshop tailored to your group's interests and skill level.</p>
-                    <ul style="list-style: none; margin: 16px 0 24px; display: grid; gap: 8px;">
-                        <li style="color: var(--gray); font-size: 0.95rem;"><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Groups of 4–20 people</li>
-                        <li style="color: var(--gray); font-size: 0.95rem;"><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Your venue or my studio</li>
-                        <li style="color: var(--gray); font-size: 0.95rem;"><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Custom themes available</li>
-                        <li style="color: var(--gray); font-size: 0.95rem;"><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Refreshments can be arranged</li>
+                    <ul class="private-features">
+                        <li><i class="fas fa-check"></i> Groups of 4–20 people</li>
+                        <li><i class="fas fa-check"></i> Your venue or my studio</li>
+                        <li><i class="fas fa-check"></i> Custom themes available</li>
+                        <li><i class="fas fa-check"></i> Refreshments can be arranged</li>
                     </ul>
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <div class="btn-group">
                         <a href="book.html" class="btn btn-primary">Enquire Now</a>
                         <a href="hire.html" class="btn btn-outline">Learn More</a>
                     </div>
@@ -433,7 +433,7 @@
                     <p>Get notified about new workshops, artwork, and travel stories.</p>
                     <form class="newsletter-form" id="newsletterForm">
                         <input type="email" placeholder="Your email address" required>
-                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-arrow-right"></i></button>
                     </form>
                 </div>
             </div>

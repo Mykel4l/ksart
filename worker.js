@@ -38,6 +38,16 @@ function isAuthed(request, env) {
   return token === env.ADMIN_TOKEN;
 }
 
+// Allowed image MIME types
+const ALLOWED_TYPES = {
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp",
+  "image/gif": "gif",
+  "image/svg+xml": "svg",
+};
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
 // ---- Router ----
 
 class Router {
@@ -186,9 +196,14 @@ api.delete("/api/posts/:id", async (req, env, { id }) => {
 // -- Workshops --
 
 api.get("/api/workshops", async (req, env) => {
-  const { results } = await env.DB.prepare(
-    "SELECT * FROM workshops WHERE active = 1 ORDER BY date ASC"
-  ).all();
+  const url = new URL(req.url);
+  const all = url.searchParams.get("all");
+  let query = "SELECT * FROM workshops";
+  if (!all || !isAuthed(req, env)) {
+    query += " WHERE active = 1";
+  }
+  query += " ORDER BY date ASC";
+  const { results } = await env.DB.prepare(query).all();
   return json(results);
 });
 
@@ -208,23 +223,44 @@ api.post("/api/workshops", async (req, env) => {
   return success ? json({ ok: true, slug }, 201) : err("Insert failed");
 });
 
+api.put("/api/workshops/:id", async (req, env, { id }) => {
+  if (!isAuthed(req, env)) return err("Unauthorized", 401);
+  const body = await req.json();
+  const { success } = await env.DB.prepare(
+    `UPDATE workshops SET title=?, description=?, date=?, time=?, duration=?, location=?, capacity=?, spots_left=?, price=?, level=?, image_url=?, active=? WHERE id=?`
+  ).bind(body.title, body.description, body.date, body.time, body.duration, body.location, body.capacity || 12, body.spots_left ?? body.capacity ?? 12, body.price, body.level || "All Levels", body.image_url || "", body.active ? 1 : 0, id).run();
+  return success ? json({ ok: true }) : err("Update failed");
+});
+
+api.delete("/api/workshops/:id", async (req, env, { id }) => {
+  if (!isAuthed(req, env)) return err("Unauthorized", 401);
+  await env.DB.prepare("DELETE FROM workshops WHERE id = ?").bind(id).run();
+  return json({ ok: true });
+});
+
 // -- Bookings --
 
 api.post("/api/bookings", async (req, env) => {
   const body = await req.json();
   if (!body.workshop_id || !body.name || !body.email) return err("Missing required fields");
 
-  const ws = await env.DB.prepare("SELECT spots_left FROM workshops WHERE id = ?").bind(body.workshop_id).first();
-  if (!ws) return err("Workshop not found", 404);
-  if (ws.spots_left < (body.guests || 1)) return err("Not enough spots available");
+  const guests = body.guests || 1;
+
+  // Atomic decrement — only succeeds if enough spots remain
+  const update = await env.DB.prepare(
+    "UPDATE workshops SET spots_left = spots_left - ? WHERE id = ? AND spots_left >= ?"
+  ).bind(guests, body.workshop_id, guests).run();
+
+  if (!update.meta.changes) {
+    // Check if workshop exists vs not enough spots
+    const ws = await env.DB.prepare("SELECT id FROM workshops WHERE id = ?").bind(body.workshop_id).first();
+    if (!ws) return err("Workshop not found", 404);
+    return err("Not enough spots available");
+  }
 
   await env.DB.prepare(
     `INSERT INTO bookings (workshop_id, name, email, guests, notes) VALUES (?, ?, ?, ?, ?)`
-  ).bind(body.workshop_id, body.name, body.email, body.guests || 1, body.notes || "").run();
-
-  await env.DB.prepare(
-    "UPDATE workshops SET spots_left = spots_left - ? WHERE id = ?"
-  ).bind(body.guests || 1, body.workshop_id).run();
+  ).bind(body.workshop_id, body.name, body.email, guests, body.notes || "").run();
 
   return json({ ok: true, message: "Booking confirmed!" }, 201);
 });
@@ -311,6 +347,77 @@ api.post("/api/testimonials", async (req, env) => {
   return json({ ok: true }, 201);
 });
 
+api.put("/api/testimonials/:id", async (req, env, { id }) => {
+  if (!isAuthed(req, env)) return err("Unauthorized", 401);
+  const body = await req.json();
+  const { success } = await env.DB.prepare(
+    `UPDATE testimonials SET name=?, role=?, quote=?, rating=?, avatar_url=?, featured=? WHERE id=?`
+  ).bind(body.name, body.role || "", body.quote, body.rating || 5, body.avatar_url || "", body.featured ? 1 : 0, id).run();
+  return success ? json({ ok: true }) : err("Update failed");
+});
+
+api.delete("/api/testimonials/:id", async (req, env, { id }) => {
+  if (!isAuthed(req, env)) return err("Unauthorized", 401);
+  await env.DB.prepare("DELETE FROM testimonials WHERE id = ?").bind(id).run();
+  return json({ ok: true });
+});
+
+// -- Image Upload (R2) --
+
+api.post("/api/upload", async (req, env) => {
+  if (!isAuthed(req, env)) return err("Unauthorized", 401);
+
+  const contentType = req.headers.get("Content-Type") || "";
+  if (!contentType.includes("multipart/form-data")) {
+    return err("Content-Type must be multipart/form-data");
+  }
+
+  const formData = await req.formData();
+  const file = formData.get("file");
+  if (!file || !file.name) return err("No file provided");
+
+  const mimeType = file.type;
+  const ext = ALLOWED_TYPES[mimeType];
+  if (!ext) return err("Unsupported file type. Allowed: JPEG, PNG, WebP, GIF, SVG");
+  if (file.size > MAX_FILE_SIZE) return err("File too large. Max 10 MB");
+
+  // Generate a unique key:  folder/timestamp-randomhex.ext
+  const folder = formData.get("folder") || "uploads";
+  const hex = [...crypto.getRandomValues(new Uint8Array(6))].map(b => b.toString(16).padStart(2, "0")).join("");
+  const key = `${folder}/${Date.now()}-${hex}.${ext}`;
+
+  await env.IMAGES.put(key, file.stream(), {
+    httpMetadata: { contentType: mimeType },
+    customMetadata: { originalName: file.name },
+  });
+
+  return json({ ok: true, url: `/uploads/${key}`, key });
+});
+
+// List uploaded images (admin)
+api.get("/api/uploads", async (req, env) => {
+  if (!isAuthed(req, env)) return err("Unauthorized", 401);
+  const url = new URL(req.url);
+  const prefix = url.searchParams.get("folder") || "";
+  const listed = await env.IMAGES.list({ prefix, limit: 100 });
+  const files = listed.objects.map(obj => ({
+    key: obj.key,
+    url: `/uploads/${obj.key}`,
+    size: obj.size,
+    uploaded: obj.uploaded,
+  }));
+  return json(files);
+});
+
+// Delete uploaded image
+api.delete("/api/uploads/:key", async (req, env, { key }) => {
+  if (!isAuthed(req, env)) return err("Unauthorized", 401);
+  // key may contain slashes — reconstruct from URL
+  const fullKey = new URL(req.url).pathname.replace("/api/uploads/", "");
+  await env.IMAGES.delete(fullKey);
+  return json({ ok: true });
+});
+
 // -- Stats (admin dashboard) --
 
 api.get("/api/stats", async (req, env) => {
@@ -357,6 +464,20 @@ export default {
       }
     }
 
+    // Serve uploaded images from R2
+    if (pathname.startsWith("/uploads/")) {
+      const key = pathname.slice("/uploads/".length);
+      const object = await env.IMAGES.get(key);
+      if (!object) {
+        return new Response("Image not found", { status: 404 });
+      }
+      const headers = new Headers();
+      headers.set("Content-Type", object.httpMetadata?.contentType || "application/octet-stream");
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+      headers.set("X-Content-Type-Options", "nosniff");
+      return new Response(object.body, { headers });
+    }
+
     // Static assets
     const response = await env.ASSETS.fetch(request);
 
@@ -368,8 +489,10 @@ export default {
       headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
       const ext = pathname.split(".").pop();
-      if (["css", "js", "jpeg", "jpg", "png", "webp", "svg", "woff2"].includes(ext)) {
+      if (["jpeg", "jpg", "png", "webp", "svg", "woff2"].includes(ext)) {
         headers.set("Cache-Control", "public, max-age=31536000, immutable");
+      } else if (["css", "js"].includes(ext)) {
+        headers.set("Cache-Control", "public, max-age=86400, must-revalidate");
       } else {
         headers.set("Cache-Control", "public, max-age=3600, must-revalidate");
       }

@@ -139,12 +139,12 @@
     </div>
 
     <!-- Page Hero -->
-    <section class="page-hero" style="position: relative; overflow: hidden;">
-        <img src="img/artwork3.jpeg" alt="Hire Ksenia background — contemporary artwork commission" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; filter: blur(3px);">
-        <div class="container" style="position: relative; z-index: 2;">
+    <section class="page-hero page-hero--bg">
+        <img src="img/artwork3.jpeg" alt="Hire Ksenia background — contemporary artwork commission" class="page-hero-bg-img">
+        <div class="container">
             <span class="section-tag">Work With Me</span>
             <h1 class="section-title">Let's Create<br><span class="accent">Together</span></h1>
-            <p class="section-desc" style="margin: 0 auto;">Have a project in mind? I'd love to hear about it. Fill out the form below and I'll get back to you within 48 hours.</p>
+            <p class="section-desc section-desc--centered">Have a project in mind? I'd love to hear about it. Fill out the form below and I'll get back to you within 48 hours.</p>
         </div>
     </section>
 
@@ -194,24 +194,24 @@
                     </div>
 
                     <!-- Pricing Hints -->
-                    <div style="margin-top: 32px; padding: 24px; background: var(--dark-2); border: 1px solid var(--dark-3); border-radius: 16px;">
-                        <h4 style="font-family: var(--font-display); margin-bottom: 16px;">Starting Rates</h4>
-                        <div style="display: grid; gap: 12px;">
-                            <div style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--dark-3);">
-                                <span style="color: var(--gray);">Digital Illustration</span>
-                                <span style="font-weight: 600;">From $250</span>
+                    <div class="pricing-card">
+                        <h4>Starting Rates</h4>
+                        <div class="pricing-list">
+                            <div class="pricing-row">
+                                <span class="pricing-label">Digital Illustration</span>
+                                <span class="pricing-value">From $250</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--dark-3);">
-                                <span style="color: var(--gray);">Custom Portrait</span>
-                                <span style="font-weight: 600;">From $400</span>
+                            <div class="pricing-row">
+                                <span class="pricing-label">Custom Portrait</span>
+                                <span class="pricing-value">From $400</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--dark-3);">
-                                <span style="color: var(--gray);">Mural (per sq ft)</span>
-                                <span style="font-weight: 600;">From $35</span>
+                            <div class="pricing-row">
+                                <span class="pricing-label">Mural (per sq ft)</span>
+                                <span class="pricing-value">From $35</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between;">
-                                <span style="color: var(--gray);">Concept Art</span>
-                                <span style="font-weight: 600;">From $500</span>
+                            <div class="pricing-row">
+                                <span class="pricing-label">Concept Art</span>
+                                <span class="pricing-value">From $500</span>
                             </div>
                         </div>
                     </div>
@@ -303,47 +303,47 @@
     </section>
 
     <!-- FAQ Section -->
-    <section style="padding: 80px 0 120px; background: var(--dark-2);">
+    <section class="section-pad-lg section-bg-alt">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">FAQ</span>
                 <h2 class="section-title">Common <span class="accent">Questions</span></h2>
             </div>
-            <div style="max-width: 700px; margin: 0 auto;">
-                <div class="faq-item" style="border-bottom: 1px solid var(--dark-3); padding: 24px 0;">
-                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="background: none; border: none; color: var(--white); font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                         How long does a typical project take?
-                        <i class="fas fa-plus" style="color: var(--primary); font-size: 0.9rem; transition: 0.3s;"></i>
+                        <i class="fas fa-plus"></i>
                     </button>
-                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
-                        <p style="padding-top: 12px;">Timeline varies by project complexity. Digital illustrations typically take 1–2 weeks, portraits 2–3 weeks, and murals 2–6 weeks including prep and painting time. Rush orders may be available for an additional fee.</p>
+                    <div class="faq-answer">
+                        <p>Timeline varies by project complexity. Digital illustrations typically take 1–2 weeks, portraits 2–3 weeks, and murals 2–6 weeks including prep and painting time. Rush orders may be available for an additional fee.</p>
                     </div>
                 </div>
-                <div class="faq-item" style="border-bottom: 1px solid var(--dark-3); padding: 24px 0;">
-                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="background: none; border: none; color: var(--white); font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                         How many revisions are included?
-                        <i class="fas fa-plus" style="color: var(--primary); font-size: 0.9rem; transition: 0.3s;"></i>
+                        <i class="fas fa-plus"></i>
                     </button>
-                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
-                        <p style="padding-top: 12px;">All projects include 2 rounds of revisions at the concept/sketch stage. After the final artwork is approved and completed, minor adjustments can be made. Major changes after approval may incur additional charges.</p>
+                    <div class="faq-answer">
+                        <p>All projects include 2 rounds of revisions at the concept/sketch stage. After the final artwork is approved and completed, minor adjustments can be made. Major changes after approval may incur additional charges.</p>
                     </div>
                 </div>
-                <div class="faq-item" style="border-bottom: 1px solid var(--dark-3); padding: 24px 0;">
-                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="background: none; border: none; color: var(--white); font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                         Do you ship artwork internationally?
-                        <i class="fas fa-plus" style="color: var(--primary); font-size: 0.9rem; transition: 0.3s;"></i>
+                        <i class="fas fa-plus"></i>
                     </button>
-                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
-                        <p style="padding-top: 12px;">Yes! I ship physical artwork worldwide with full insurance and professional packaging. Digital art is delivered via high-resolution files. Shipping costs depend on size and destination.</p>
+                    <div class="faq-answer">
+                        <p>Yes! I ship physical artwork worldwide with full insurance and professional packaging. Digital art is delivered via high-resolution files. Shipping costs depend on size and destination.</p>
                     </div>
                 </div>
-                <div class="faq-item" style="border-bottom: 1px solid var(--dark-3); padding: 24px 0;">
-                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')" style="background: none; border: none; color: var(--white); font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                         What's your payment process?
-                        <i class="fas fa-plus" style="color: var(--primary); font-size: 0.9rem; transition: 0.3s;"></i>
+                        <i class="fas fa-plus"></i>
                     </button>
-                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
-                        <p style="padding-top: 12px;">A 50% deposit is required to begin work, with the remaining 50% due upon completion before final file delivery or shipping. I accept bank transfers, PayPal, and major credit cards.</p>
+                    <div class="faq-answer">
+                        <p>A 50% deposit is required to begin work, with the remaining 50% due upon completion before final file delivery or shipping. I accept bank transfers, PayPal, and major credit cards.</p>
                     </div>
                 </div>
             </div>
@@ -392,7 +392,7 @@
                     <p>Get notified about new artwork, blog posts, and travel stories.</p>
                     <form class="newsletter-form" id="newsletterForm">
                         <input type="email" placeholder="Your email address" required>
-                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-arrow-right"></i></button>
                     </form>
                 </div>
             </div>

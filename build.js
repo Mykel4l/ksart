@@ -31,7 +31,14 @@ function copyRecursive(src, dest) {
 
 // Clean dist
 if (fs.existsSync(DIST)) {
-  fs.rmSync(DIST, { recursive: true });
+  try {
+    fs.rmSync(DIST, { recursive: true, force: true });
+  } catch {
+    // On Windows the folder can be locked briefly; wait then retry
+    const { execSync } = require('child_process');
+    try { execSync('ping -n 2 127.0.0.1 >nul', { stdio: 'ignore' }); } catch {}
+    fs.rmSync(DIST, { recursive: true, force: true });
+  }
 }
 fs.mkdirSync(DIST, { recursive: true });
 

@@ -206,6 +206,222 @@
             .sidebar-nav a { white-space: nowrap; padding: 12px 16px; }
             .main-content { padding: 20px; max-height: none; }
         }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--dark-2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px;
+        }
+        .modal h3 { font-size: 1.3rem; margin-bottom: 24px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--dark-3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .form-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+        .form-check label {
+            color: var(--white);
+            font-size: 0.9rem;
+            margin: 0;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.05); }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #2a9d8f;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2000;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.error { background: #dc2626; }
+
+        /* Image Upload Widget */
+        .img-upload-widget {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--dark-3);
+        }
+        .img-upload-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .img-upload-tabs button {
+            flex: 1;
+            padding: 10px;
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .img-upload-tabs button.active {
+            color: var(--primary);
+            background: rgba(230,57,70,0.08);
+            border-bottom: 2px solid var(--primary);
+        }
+        .img-upload-body { padding: 14px; }
+        .img-upload-body .tab-pane { display: none; }
+        .img-upload-body .tab-pane.active { display: block; }
+        .img-drop-zone {
+            border: 2px dashed rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 28px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .img-drop-zone:hover, .img-drop-zone.dragover {
+            border-color: var(--primary);
+            background: rgba(230,57,70,0.05);
+        }
+        .img-drop-zone i { font-size: 1.6rem; color: var(--gray); margin-bottom: 8px; display: block; }
+        .img-drop-zone span { color: var(--gray); font-size: 0.85rem; }
+        .img-drop-zone span strong { color: var(--primary); }
+        .img-drop-zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .img-upload-progress {
+            margin-top: 10px;
+            display: none;
+        }
+        .img-upload-progress .bar-track {
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .img-upload-progress .bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .img-upload-progress .upload-status {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 6px;
+        }
+        .img-preview-box {
+            margin-top: 12px;
+            display: none;
+            position: relative;
+        }
+        .img-preview-box img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .img-preview-box .remove-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-preview-box .remove-btn:hover { background: var(--primary); }
     </style>
 </head>
 <body>
@@ -213,7 +429,7 @@
     <!-- Login Screen -->
     <div class="login-screen" id="loginScreen">
         <div class="login-box">
-            <h1>Ksenia Art <span style="color:var(--primary)">Admin</span></h1>
+            <h1>Ksenia Art <span class="admin-accent">Admin</span></h1>
             <p>Enter your admin token to manage the site.</p>
             <input type="password" id="tokenInput" placeholder="Admin token" autofocus>
             <button onclick="login()">Sign In</button>
@@ -233,7 +449,7 @@
                 <a data-panel="subscribers-panel"><i class="fas fa-users"></i> Subscribers</a>
                 <a data-panel="workshops-panel"><i class="fas fa-chalkboard-teacher"></i> Workshops</a>
                 <a data-panel="bookings-panel"><i class="fas fa-calendar-check"></i> Bookings</a>
-                <a onclick="logout()" style="margin-top:auto;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a onclick="logout()" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </nav>
         <main class="main-content">
@@ -242,7 +458,7 @@
             <div class="panel active" id="overview">
                 <div class="page-header"><h2>Dashboard</h2></div>
                 <div class="stats-grid" id="statsGrid"></div>
-                <h3 style="margin-bottom:16px;">Recent Inquiries</h3>
+                <h3 class="panel-subtitle">Recent Inquiries</h3>
                 <div id="recentInquiries"></div>
             </div>
 
@@ -250,6 +466,7 @@
             <div class="panel" id="portfolio-panel">
                 <div class="page-header">
                     <h2>Portfolio</h2>
+                    <button class="btn btn-primary" onclick="openPortfolioForm()"><i class="fas fa-plus"></i> Add New</button>
                 </div>
                 <div id="portfolioTable"></div>
             </div>
@@ -258,6 +475,7 @@
             <div class="panel" id="posts-panel">
                 <div class="page-header">
                     <h2>Blog Posts</h2>
+                    <button class="btn btn-primary" onclick="openPostForm()"><i class="fas fa-plus"></i> Add New</button>
                 </div>
                 <div id="postsTable"></div>
             </div>
@@ -276,7 +494,10 @@
 
             <!-- Workshops -->
             <div class="panel" id="workshops-panel">
-                <div class="page-header"><h2>Workshops</h2></div>
+                <div class="page-header">
+                    <h2>Workshops</h2>
+                    <button class="btn btn-primary" onclick="openWorkshopForm()"><i class="fas fa-plus"></i> Add New</button>
+                </div>
                 <div id="workshopsTable"></div>
             </div>
 
@@ -287,6 +508,14 @@
             </div>
         </main>
     </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+        <div class="modal" id="modalContent"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
 
     <script>
         let TOKEN = '';
@@ -404,7 +633,10 @@
                             <td>${i.category}</td>
                             <td>${i.dimensions || '—'}</td>
                             <td>${i.featured ? '⭐' : '—'}</td>
-                            <td><button class="btn btn-sm btn-danger" onclick="deleteItem('portfolio', ${i.id})"><i class="fas fa-trash"></i></button></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline" onclick="editPortfolio(${i.id})" style="margin-right:6px;"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteItem('portfolio', ${i.id})"><i class="fas fa-trash"></i></button>
+                            </td>
                         </tr>
                     `).join('')}</tbody>
                 </table>
@@ -423,7 +655,10 @@
                             <td>${p.category}</td>
                             <td><span class="badge ${p.published ? 'badge-replied' : 'badge-closed'}">${p.published ? 'Published' : 'Draft'}</span></td>
                             <td>${p.published_at ? new Date(p.published_at).toLocaleDateString() : '—'}</td>
-                            <td><button class="btn btn-sm btn-danger" onclick="deleteItem('posts', ${p.id})"><i class="fas fa-trash"></i></button></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline" onclick="editPost(${p.id})" style="margin-right:6px;"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteItem('posts', ${p.id})"><i class="fas fa-trash"></i></button>
+                            </td>
                         </tr>
                     `).join('')}</tbody>
                 </table>
@@ -486,10 +721,10 @@
 
         // --- Workshops ---
         async function loadWorkshopsAdmin() {
-            const workshops = await api('/api/workshops');
+            const workshops = await api('/api/workshops?all=1');
             document.getElementById('workshopsTable').innerHTML = `
                 <table class="data-table">
-                    <thead><tr><th>Title</th><th>Date</th><th>Spots Left</th><th>Price</th><th>Level</th></tr></thead>
+                    <thead><tr><th>Title</th><th>Date</th><th>Spots Left</th><th>Price</th><th>Level</th><th>Status</th><th>Actions</th></tr></thead>
                     <tbody>${workshops.map(w => `
                         <tr>
                             <td><strong>${w.title}</strong></td>
@@ -497,6 +732,11 @@
                             <td>${w.spots_left}/${w.capacity}</td>
                             <td>$${w.price}</td>
                             <td>${w.level}</td>
+                            <td><span class="badge ${w.active ? 'badge-replied' : 'badge-closed'}">${w.active ? 'Active' : 'Inactive'}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline" onclick="editWorkshop(${w.id})" style="margin-right:6px;"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteItem('workshops', ${w.id})"><i class="fas fa-trash"></i></button>
+                            </td>
                         </tr>
                     `).join('')}</tbody>
                 </table>
@@ -531,6 +771,485 @@
             // Reload the current panel
             const activePanel = document.querySelector('.sidebar-nav a.active');
             if (activePanel) loadPanelData(activePanel.dataset.panel);
+        }
+
+        // =============================================
+        // MODAL / TOAST SYSTEM
+        // =============================================
+
+        function openModal(html) {
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+        function showToast(msg, isError = false) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast show' + (isError ? ' error' : '');
+            setTimeout(() => t.className = 'toast', 3000);
+        }
+
+        // =============================================
+        // PORTFOLIO CMS
+        // =============================================
+
+        function portfolioFormHTML(item = {}) {
+            const isEdit = !!item.id;
+            return `
+                <h3>${isEdit ? 'Edit' : 'Add'} Portfolio Item</h3>
+                <form id="portfolioForm" onsubmit="submitPortfolio(event, ${item.id || 'null'})">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input name="title" required value="${escapeAttr(item.title || '')}" placeholder="e.g. Abstract Emotions">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="category">
+                                <option value="painting" ${item.category==='painting'?'selected':''}>Painting</option>
+                                <option value="sketch" ${item.category==='sketch'?'selected':''}>Sketch</option>
+                                <option value="mixed" ${item.category==='mixed'?'selected':''}>Mixed Media</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input name="year" type="number" value="${item.year || new Date().getFullYear()}" min="1900" max="2099">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Describe the artwork...">${item.description || ''}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Image *</label>
+                        ${imageFieldHTML('image_url', item.image_url, 'portfolio')}
+                    </div>
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label>Dimensions</label>
+                            <input name="dimensions" value="${item.dimensions || ''}" placeholder="36×48 in">
+                        </div>
+                        <div class="form-group">
+                            <label>Medium</label>
+                            <input name="medium" value="${item.medium || ''}" placeholder="Oil on Canvas">
+                        </div>
+                        <div class="form-group">
+                            <label>Sort Order</label>
+                            <input name="sort_order" type="number" value="${item.sort_order || 0}" min="0">
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="featured" id="pFeatured" ${item.featured ? 'checked' : ''}>
+                        <label for="pFeatured">Featured item</label>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-ghost" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">${isEdit ? 'Save Changes' : 'Add Item'}</button>
+                    </div>
+                </form>
+            `;
+        }
+
+        function openPortfolioForm(item) {
+            openModal(portfolioFormHTML(item || {}));
+        }
+
+        async function editPortfolio(id) {
+            const item = await api(`/api/portfolio/${id}`);
+            if (item.error) return showToast('Failed to load item', true);
+            openPortfolioForm(item);
+        }
+
+        async function submitPortfolio(e, id) {
+            e.preventDefault();
+            const f = e.target;
+            const body = {
+                title: f.title.value,
+                category: f.category.value,
+                description: f.description.value,
+                image_url: f.image_url.value,
+                dimensions: f.dimensions.value,
+                medium: f.medium.value,
+                year: parseInt(f.year.value),
+                featured: f.featured.checked,
+                sort_order: parseInt(f.sort_order.value) || 0,
+            };
+            const res = id
+                ? await api(`/api/portfolio/${id}`, { method: 'PUT', body: JSON.stringify(body) })
+                : await api('/api/portfolio', { method: 'POST', body: JSON.stringify(body) });
+            if (res.error) return showToast(res.error, true);
+            closeModal();
+            showToast(id ? 'Portfolio item updated!' : 'Portfolio item added!');
+            loadPortfolioAdmin();
+        }
+
+        // =============================================
+        // BLOG POSTS CMS
+        // =============================================
+
+        function postFormHTML(item = {}) {
+            const isEdit = !!item.id;
+            const tags = Array.isArray(item.tags) ? item.tags.join(', ') : (item.tags || '');
+            return `
+                <h3>${isEdit ? 'Edit' : 'Add'} Blog Post</h3>
+                <form id="postForm" onsubmit="submitPost(event, ${item.id || 'null'})">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input name="title" required value="${escapeAttr(item.title || '')}" placeholder="Post title">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="category">
+                                <option value="art" ${item.category==='art'?'selected':''}>Art</option>
+                                <option value="technique" ${item.category==='technique'?'selected':''}>Technique</option>
+                                <option value="studio" ${item.category==='studio'?'selected':''}>Studio</option>
+                                <option value="travel" ${item.category==='travel'?'selected':''}>Travel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Read Time (min)</label>
+                            <input name="read_time" type="number" value="${item.read_time || 5}" min="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea name="excerpt" rows="3" placeholder="Short summary for previews...">${escapeHTML(item.excerpt || '')}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Body (HTML) *</label>
+                        <textarea name="body" required style="min-height:200px;font-family:monospace;font-size:0.85rem;" placeholder="<p>Your post content here...</p>">${escapeHTML(item.body || '')}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover Image</label>
+                        ${imageFieldHTML('cover_image', item.cover_image, 'blog')}
+                    </div>
+                    <div class="form-group">
+                        <label>Tags (comma-separated)</label>
+                        <input name="tags" value="${escapeAttr(tags)}" placeholder="painting, technique, tips">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="published" id="pPublished" ${item.published ? 'checked' : ''}>
+                        <label for="pPublished">Published</label>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-ghost" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">${isEdit ? 'Save Changes' : 'Add Post'}</button>
+                    </div>
+                </form>
+            `;
+        }
+
+        function openPostForm(item) {
+            openModal(postFormHTML(item || {}));
+        }
+
+        async function editPost(id) {
+            const item = await api(`/api/posts/${id}`);
+            if (item.error) return showToast('Failed to load post', true);
+            // Parse tags if string
+            if (typeof item.tags === 'string') {
+                try { item.tags = JSON.parse(item.tags); } catch(e) { item.tags = []; }
+            }
+            openPostForm(item);
+        }
+
+        async function submitPost(e, id) {
+            e.preventDefault();
+            const f = e.target;
+            const tagsStr = f.tags.value.trim();
+            const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(Boolean) : [];
+            const body = {
+                title: f.title.value,
+                category: f.category.value,
+                excerpt: f.excerpt.value,
+                body: f.body.value,
+                cover_image: f.cover_image.value,
+                tags,
+                read_time: parseInt(f.read_time.value) || 5,
+                published: f.published.checked,
+            };
+            const res = id
+                ? await api(`/api/posts/${id}`, { method: 'PUT', body: JSON.stringify(body) })
+                : await api('/api/posts', { method: 'POST', body: JSON.stringify(body) });
+            if (res.error) return showToast(res.error, true);
+            closeModal();
+            showToast(id ? 'Post updated!' : 'Post added!');
+            loadPostsAdmin();
+        }
+
+        // =============================================
+        // WORKSHOPS CMS
+        // =============================================
+
+        function workshopFormHTML(item = {}) {
+            const isEdit = !!item.id;
+            return `
+                <h3>${isEdit ? 'Edit' : 'Add'} Workshop</h3>
+                <form id="workshopForm" onsubmit="submitWorkshop(event, ${item.id || 'null'})">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input name="title" required value="${escapeAttr(item.title || '')}" placeholder="Workshop title">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Describe the workshop...">${escapeHTML(item.description || '')}</textarea>
+                    </div>
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label>Date *</label>
+                            <input name="date" type="date" required value="${item.date || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input name="time" value="${escapeAttr(item.time || '')}" placeholder="10:00 AM – 4:00 PM">
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <input name="duration" value="${escapeAttr(item.duration || '')}" placeholder="6 hours">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input name="location" value="${escapeAttr(item.location || '')}" placeholder="Studio — Downtown Art District">
+                    </div>
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label>Capacity</label>
+                            <input name="capacity" type="number" value="${item.capacity || 12}" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Spots Left</label>
+                            <input name="spots_left" type="number" value="${item.spots_left ?? item.capacity ?? 12}" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Price ($)</label>
+                            <input name="price" type="number" step="0.01" value="${item.price || ''}" placeholder="180">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Level</label>
+                            <select name="level">
+                                <option value="All Levels" ${item.level==='All Levels'?'selected':''}>All Levels</option>
+                                <option value="Beginner Friendly" ${item.level==='Beginner Friendly'?'selected':''}>Beginner Friendly</option>
+                                <option value="Intermediate" ${item.level==='Intermediate'?'selected':''}>Intermediate</option>
+                                <option value="Advanced" ${item.level==='Advanced'?'selected':''}>Advanced</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        ${imageFieldHTML('image_url', item.image_url, 'workshops')}
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="active" id="wActive" ${(item.active !== undefined ? item.active : true) ? 'checked' : ''}>
+                        <label for="wActive">Active (visible on site)</label>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-ghost" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">${isEdit ? 'Save Changes' : 'Add Workshop'}</button>
+                    </div>
+                </form>
+            `;
+        }
+
+        function openWorkshopForm(item) {
+            openModal(workshopFormHTML(item || {}));
+        }
+
+        async function editWorkshop(id) {
+            const item = await api(`/api/workshops/${id}`);
+            if (item.error) return showToast('Failed to load workshop', true);
+            openWorkshopForm(item);
+        }
+
+        async function submitWorkshop(e, id) {
+            e.preventDefault();
+            const f = e.target;
+            const body = {
+                title: f.title.value,
+                description: f.description.value,
+                date: f.date.value,
+                time: f.time.value,
+                duration: f.duration.value,
+                location: f.location.value,
+                capacity: parseInt(f.capacity.value) || 12,
+                spots_left: parseInt(f.spots_left.value) || 12,
+                price: parseFloat(f.price.value) || 0,
+                level: f.level.value,
+                image_url: f.image_url.value,
+                active: f.active.checked,
+            };
+            const res = id
+                ? await api(`/api/workshops/${id}`, { method: 'PUT', body: JSON.stringify(body) })
+                : await api('/api/workshops', { method: 'POST', body: JSON.stringify(body) });
+            if (res.error) return showToast(res.error, true);
+            closeModal();
+            showToast(id ? 'Workshop updated!' : 'Workshop added!');
+            loadWorkshopsAdmin();
+        }
+
+        // =============================================
+        // UTILITY HELPERS
+        // =============================================
+
+        function escapeHTML(str) {
+            return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function escapeAttr(str) {
+            return (str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        // =============================================
+        // IMAGE UPLOAD WIDGET
+        // =============================================
+
+        let _imgWidgetId = 0;
+
+        function imageFieldHTML(name, currentValue, folder) {
+            const id = `imgw_${++_imgWidgetId}`;
+            const hasValue = !!currentValue;
+            const previewDisplay = hasValue ? 'block' : 'none';
+            const activeTab = hasValue && !currentValue.startsWith('/uploads/') ? 'url' : 'upload';
+            return `
+                <input type="hidden" name="${name}" id="${id}_val" value="${escapeAttr(currentValue || '')}">
+                <div class="img-upload-widget" id="${id}">
+                    <div class="img-upload-tabs">
+                        <button type="button" class="${activeTab === 'upload' ? 'active' : ''}" onclick="switchImgTab('${id}','upload')">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload
+                        </button>
+                        <button type="button" class="${activeTab === 'url' ? 'active' : ''}" onclick="switchImgTab('${id}','url')">
+                            <i class="fas fa-link"></i> URL
+                        </button>
+                    </div>
+                    <div class="img-upload-body">
+                        <div class="tab-pane ${activeTab === 'upload' ? 'active' : ''}" id="${id}_upload">
+                            <div class="img-drop-zone" id="${id}_drop"
+                                 ondragover="event.preventDefault();this.classList.add('dragover')"
+                                 ondragleave="this.classList.remove('dragover')"
+                                 ondrop="event.preventDefault();this.classList.remove('dragover');handleImgDrop(event,'${id}','${folder}')">
+                                <i class="fas fa-image"></i>
+                                <span>Drop image here or <strong>click to browse</strong></span>
+                                <input type="file" accept="image/*" onchange="handleImgSelect(this,'${id}','${folder}')">
+                            </div>
+                            <div class="img-upload-progress" id="${id}_progress">
+                                <div class="bar-track"><div class="bar-fill" id="${id}_bar"></div></div>
+                                <div class="upload-status" id="${id}_status">Uploading...</div>
+                            </div>
+                        </div>
+                        <div class="tab-pane ${activeTab === 'url' ? 'active' : ''}" id="${id}_url">
+                            <input type="text" value="${escapeAttr(currentValue || '')}" placeholder="/img/artwork.jpeg or https://..."
+                                   oninput="setImgValue('${id}', this.value)"
+                                   style="width:100%;padding:12px 14px;background:var(--dark);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--white);font-size:0.9rem;">
+                        </div>
+                        <div class="img-preview-box" id="${id}_preview" style="display:${previewDisplay}">
+                            <img src="${escapeAttr(currentValue || '')}" id="${id}_img" alt="Preview" onerror="this.parentElement.style.display='none'">
+                            <button type="button" class="remove-btn" onclick="clearImgValue('${id}')"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function switchImgTab(id, tab) {
+            const widget = document.getElementById(id);
+            widget.querySelectorAll('.img-upload-tabs button').forEach((b, i) => {
+                b.classList.toggle('active', (tab === 'upload' && i === 0) || (tab === 'url' && i === 1));
+            });
+            document.getElementById(`${id}_upload`).classList.toggle('active', tab === 'upload');
+            document.getElementById(`${id}_url`).classList.toggle('active', tab === 'url');
+        }
+
+        function setImgValue(id, url) {
+            document.getElementById(`${id}_val`).value = url;
+            const preview = document.getElementById(`${id}_preview`);
+            const img = document.getElementById(`${id}_img`);
+            if (url) {
+                img.src = url;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+
+        function clearImgValue(id) {
+            document.getElementById(`${id}_val`).value = '';
+            document.getElementById(`${id}_preview`).style.display = 'none';
+            // Clear URL input if present
+            const urlInput = document.querySelector(`#${id}_url input`);
+            if (urlInput) urlInput.value = '';
+        }
+
+        function handleImgDrop(event, id, folder) {
+            const file = event.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                uploadImageFile(file, id, folder);
+            }
+        }
+
+        function handleImgSelect(input, id, folder) {
+            const file = input.files[0];
+            if (file) {
+                uploadImageFile(file, id, folder);
+                input.value = ''; // reset so same file can be re-selected
+            }
+        }
+
+        async function uploadImageFile(file, id, folder) {
+            const progress = document.getElementById(`${id}_progress`);
+            const bar = document.getElementById(`${id}_bar`);
+            const status = document.getElementById(`${id}_status`);
+
+            progress.style.display = 'block';
+            bar.style.width = '0%';
+            status.textContent = `Uploading ${file.name}...`;
+
+            // Animate progress bar (simulate since fetch doesn't report upload progress)
+            bar.style.width = '30%';
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('folder', folder);
+
+            try {
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${TOKEN}` },
+                    body: formData,
+                });
+                bar.style.width = '90%';
+                const data = await res.json();
+
+                if (data.error) {
+                    status.textContent = data.error;
+                    status.style.color = 'var(--primary)';
+                    bar.style.width = '100%';
+                    bar.style.background = 'var(--primary)';
+                    setTimeout(() => { progress.style.display = 'none'; bar.style.background = ''; status.style.color = ''; }, 3000);
+                    return;
+                }
+
+                bar.style.width = '100%';
+                status.textContent = 'Upload complete!';
+                status.style.color = '#2a9d8f';
+
+                // Set the value
+                setImgValue(id, data.url);
+                // Also update URL tab input
+                const urlInput = document.querySelector(`#${id}_url input`);
+                if (urlInput) urlInput.value = data.url;
+
+                setTimeout(() => { progress.style.display = 'none'; status.style.color = ''; }, 2000);
+            } catch (e) {
+                status.textContent = 'Upload failed. Please try again.';
+                status.style.color = 'var(--primary)';
+                bar.style.width = '100%';
+                bar.style.background = 'var(--primary)';
+                setTimeout(() => { progress.style.display = 'none'; bar.style.background = ''; status.style.color = ''; }, 3000);
+            }
         }
     </script>
 </body>

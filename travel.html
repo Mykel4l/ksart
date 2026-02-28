@@ -110,12 +110,12 @@
     </div>
 
     <!-- Page Hero -->
-    <section class="page-hero" style="position: relative; overflow: hidden;">
-        <img src="img/artwork2.jpeg" alt="Travel blog background — artwork inspired by world travels" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; filter: blur(3px);">
-        <div class="container" style="position: relative; z-index: 2;">
+    <section class="page-hero page-hero--bg">
+        <img src="img/artwork2.jpeg" alt="Travel blog background — artwork inspired by world travels" class="page-hero-bg-img">
+        <div class="container">
             <span class="section-tag"><i class="fas fa-plane"></i> Travel Blog</span>
             <h1 class="section-title">Art Meets <span class="accent">Adventure</span></h1>
-            <p class="section-desc" style="margin: 0 auto;">Documenting my journeys around the world — the places, cultures, and experiences that inspire my art.</p>
+            <p class="section-desc section-desc--centered">Documenting my journeys around the world — the places, cultures, and experiences that inspire my art.</p>
         </div>
     </section>
 
@@ -133,8 +133,8 @@
                     <span class="featured-badge"><i class="fas fa-star"></i> Featured</span>
                     <h3>Colors of Morocco: A 2-Week Art Residency in Marrakech</h3>
                     <p>Two weeks painting in the vibrant streets of Marrakech — from the souks to the Atlas Mountains. Here's how Morocco transformed my approach to color and composition.</p>
-                    <div class="blog-card-meta" style="margin-bottom: 20px;">
-                        <span><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> Marrakech, Morocco</span>
+                    <div class="blog-card-meta blog-card-meta--travel">
+                        <span><i class="fas fa-map-marker-alt"></i> Marrakech, Morocco</span>
                         <span><i class="far fa-calendar"></i> Feb 15, 2026</span>
                     </div>
                     <a href="#" class="btn btn-primary">Read Story</a>
@@ -252,13 +252,13 @@
     </section>
 
     <!-- Travel Map Section -->
-    <section class="cta-section" style="background: linear-gradient(135deg, var(--dark-2) 0%, var(--dark-3) 100%);">
+    <section class="cta-section cta-section--gradient">
         <div class="container">
             <div class="cta-content">
                 <span class="section-tag"><i class="fas fa-globe-americas"></i> Adventures</span>
-                <h2 style="color: var(--white);">12+ Countries. <span class="accent">Endless Inspiration.</span></h2>
+                <h2>12+ Countries. <span class="accent">Endless Inspiration.</span></h2>
                 <p>Every journey feeds the art. Follow along as I explore the world, one canvas at a time.</p>
-                <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+                <div class="btn-group btn-group--center">
                     <a href="#" class="btn btn-primary"><i class="fab fa-instagram"></i> Follow on Instagram</a>
                     <a href="#" class="btn btn-outline">View Photo Gallery</a>
                 </div>
@@ -308,7 +308,7 @@
                     <p>Get notified about new artwork, blog posts, and travel stories.</p>
                     <form class="newsletter-form" id="newsletterForm">
                         <input type="email" placeholder="Your email address" required>
-                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-arrow-right"></i></button>
                     </form>
                 </div>
             </div>

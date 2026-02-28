@@ -131,6 +131,7 @@ img {
 
 #navbar.scrolled {
     background: rgba(10, 10, 10, 0.95);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     padding: 12px 0;
     box-shadow: 0 2px 40px rgba(0,0,0,0.3);
@@ -1090,6 +1091,7 @@ img {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.92);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     z-index: 9999;
     display: flex;
@@ -1210,6 +1212,7 @@ img {
     height: 48px;
     border-radius: 50%;
     background: rgba(255,255,255,0.1);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.1);
     color: var(--white);
@@ -1315,18 +1318,23 @@ img {
 }
 
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 32px;
     padding: 80px 0 120px;
 }
 
 .blog-card {
+    flex: 1 1 calc(33.333% - 22px);
+    max-width: calc(33.333% - 22px);
+    min-width: 280px;
     background: var(--dark-2);
     border: 1px solid var(--dark-3);
     border-radius: 16px;
     overflow: hidden;
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
 }
 
 .blog-card:hover {
@@ -1336,7 +1344,10 @@ img {
 }
 
 .blog-card-img {
-    aspect-ratio: 16/10;
+    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
+    flex-shrink: 0;
     overflow: hidden;
 }
 
@@ -1344,6 +1355,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.6s ease;
 }
 
@@ -1353,6 +1365,13 @@ img {
 
 .blog-card-content {
     padding: 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card-content > p {
+    flex: 1;
 }
 
 .blog-card-meta {
@@ -1507,6 +1526,7 @@ img {
     bottom: 12px;
     left: 12px;
     background: rgba(0,0,0,0.7);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     padding: 6px 14px;
     border-radius: 50px;
@@ -1631,6 +1651,7 @@ img {
     outline: none;
     transition: var(--transition);
     -webkit-appearance: none;
+    appearance: none;
 }
 
 .form-group input:focus,
@@ -1776,7 +1797,12 @@ img {
 
     .blog-grid,
     .travel-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .blog-card {
+        flex: 1 1 100%;
+        max-width: 100%;
     }
 
     .featured-card {
@@ -1857,17 +1883,22 @@ img {
    ============================================ */
 
 .workshop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 32px;
 }
 
 .workshop-card {
+    flex: 1 1 calc(33.333% - 22px);
+    max-width: calc(33.333% - 22px);
+    min-width: 300px;
     background: var(--dark-2);
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .workshop-card:hover {
@@ -1877,7 +1908,10 @@ img {
 
 .workshop-card-img {
     position: relative;
-    height: 220px;
+    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
+    flex-shrink: 0;
     overflow: hidden;
 }
 
@@ -1885,6 +1919,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.5s ease;
 }
 
@@ -1922,6 +1957,9 @@ img {
 
 .workshop-card-content {
     padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .workshop-meta {
@@ -2002,13 +2040,221 @@ img {
 }
 
 @media (max-width: 480px) {
-    .workshop-grid {
-        grid-template-columns: 1fr;
+    .workshop-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        min-width: 0;
     }
 }
 
 /* ============================================
    BOOK PAGE
+   ============================================ */
+
+/* ============================================
+   PAGE HERO BACKGROUND IMAGE
+   ============================================ */
+
+.page-hero--bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+    filter: blur(3px);
+}
+
+.page-hero--bg .container {
+    position: relative;
+    z-index: 2;
+}
+
+.section-desc--centered {
+    margin: 0 auto;
+}
+
+/* ============================================
+   STANDARD SECTION SPACING
+   ============================================ */
+
+.section-pad {
+    padding: 80px 0;
+}
+
+.section-pad-lg {
+    padding: 80px 0 120px;
+}
+
+.section-bg-alt {
+    background: var(--dark-2);
+}
+
+/* ============================================
+   PRICING CARD (Hire page)
+   ============================================ */
+
+.pricing-card {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--dark-2);
+    border: 1px solid var(--dark-3);
+    border-radius: 16px;
+}
+
+.pricing-card h4 {
+    font-family: var(--font-display);
+    margin-bottom: 16px;
+}
+
+.pricing-list {
+    display: grid;
+    gap: 12px;
+}
+
+.pricing-row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--dark-3);
+}
+
+.pricing-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.pricing-label {
+    color: var(--gray);
+}
+
+.pricing-value {
+    font-weight: 600;
+}
+
+/* ============================================
+   FAQ SECTION (Hire page)
+   ============================================ */
+
+.faq-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--dark-3);
+    padding: 24px 0;
+}
+
+.faq-question {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question i {
+    color: var(--primary);
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.faq-item.open .faq-question i {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 300px;
+}
+
+.faq-answer p {
+    padding-top: 12px;
+}
+
+/* ============================================
+   PRIVATE WORKSHOP FEATURES (Workshops page)
+   ============================================ */
+
+.private-features {
+    list-style: none;
+    margin: 16px 0 24px;
+    display: grid;
+    gap: 8px;
+}
+
+.private-features li {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.private-features li i {
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-group--center {
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.blog-card-meta--travel {
+    margin-bottom: 20px;
+}
+
+.blog-card-meta--travel .fa-map-marker-alt {
+    color: var(--primary);
+}
+
+.cta-section--gradient {
+    background: linear-gradient(135deg, var(--dark-2) 0%, var(--dark-3) 100%);
+}
+
+.cta-section--gradient h2 {
+    color: var(--white);
+}
+
+.admin-accent {
+    color: var(--primary);
+}
+
+.sidebar-nav a.logout-link {
+    margin-top: auto;
+}
+
+.panel-subtitle {
+    margin-bottom: 16px;
+}
+
+/* ============================================
+   BOOK PAGE STYLES
    ============================================ */
 
 .book-section {

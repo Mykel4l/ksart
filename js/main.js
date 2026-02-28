@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Navbar Scroll ---
     const navbar = document.getElementById('navbar');
-    let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
@@ -148,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content') === false && !e.target.closest('.lightbox-content')) closeLightbox();
+            if (e.target === lightbox || !e.target.closest('.lightbox-content')) closeLightbox();
         });
 
         document.addEventListener('keydown', (e) => {
@@ -432,18 +431,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const date = post.published_at ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
                 return `
                 <article class="blog-card reveal visible">
-                    <div class="blog-card-image">
+                    <div class="blog-card-img">
                         <img src="${post.cover_image}" alt="${post.title}" loading="lazy">
-                        <span class="blog-category">${post.category}</span>
                     </div>
                     <div class="blog-card-content">
-                        <div class="blog-meta">
+                        <div class="blog-card-meta">
+                            <span class="blog-card-tag">${post.category}</span>
                             <span><i class="far fa-calendar"></i> ${date}</span>
                             <span><i class="far fa-clock"></i> ${post.read_time} min read</span>
                         </div>
-                        <h3>${post.title}</h3>
+                        <h3><a href="/post.html?slug=${post.slug}">${post.title}</a></h3>
                         <p>${post.excerpt}</p>
-                        <a href="/post.html?slug=${post.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                        <a href="/post.html?slug=${post.slug}" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
             `}).join('');
@@ -462,30 +461,47 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!workshopGrid) return;
         try {
             const workshops = await API.getWorkshops();
-            workshopGrid.innerHTML = workshops.map(ws => `
+            const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+            workshopGrid.innerHTML = workshops.map(ws => {
+                const d = new Date(ws.date);
+                return `
                 <div class="workshop-card reveal visible">
-                    <div class="workshop-card-image">
+                    <div class="workshop-card-img">
                         <img src="${ws.image_url}" alt="${ws.title}" loading="lazy">
-                        <span class="workshop-level">${ws.level}</span>
+                        <div class="workshop-date-badge">
+                            <span class="workshop-month">${months[d.getMonth()]}</span>
+                            <span class="workshop-day">${d.getDate()}</span>
+                        </div>
                     </div>
                     <div class="workshop-card-content">
+                        <div class="workshop-meta">
+                            <span><i class="far fa-clock"></i> ${ws.time}</span>
+                            <span><i class="fas fa-user-friends"></i> ${ws.spots_left} spots</span>
+                        </div>
                         <h3>${ws.title}</h3>
                         <p>${ws.description}</p>
                         <div class="workshop-details">
-                            <span><i class="far fa-calendar"></i> ${new Date(ws.date).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}</span>
-                            <span><i class="far fa-clock"></i> ${ws.time}</span>
-                            <span><i class="fas fa-map-marker-alt"></i> ${ws.location}</span>
-                            <span><i class="fas fa-users"></i> ${ws.spots_left} spots left</span>
+                            <div class="workshop-detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${ws.location}</span>
+                            </div>
+                            <div class="workshop-detail-item">
+                                <i class="fas fa-layer-group"></i>
+                                <span>${ws.level}</span>
+                            </div>
                         </div>
                         <div class="workshop-footer">
-                            <span class="workshop-price">$${ws.price}</span>
+                            <div class="workshop-price">
+                                <span class="price-amount">$${ws.price}</span>
+                                <span class="price-label">per person</span>
+                            </div>
                             <button class="btn btn-primary btn-book-workshop" data-id="${ws.id}" data-title="${ws.title}" ${ws.spots_left <= 0 ? 'disabled' : ''}>
                                 ${ws.spots_left <= 0 ? 'Sold Out' : 'Book Now'}
                             </button>
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
 
             // Bind booking buttons
             document.querySelectorAll('.btn-book-workshop').forEach(btn => {

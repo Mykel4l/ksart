@@ -1,22 +1,28 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ksart",
-  "compatibility_date": "2026-02-28",
-  "main": "worker.js",
-  "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "html_handling": "auto-trailing-slash",
-    "not_found_handling": "single-page-application"
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "ksart-db",
-      "database_id": "<YOUR_D1_DATABASE_ID>"
-    }
-  ],
-  "vars": {
-    "ADMIN_TOKEN": "change-me-to-a-secure-token"
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ksart",
+	"compatibility_date": "2026-02-28",
+	"main": "worker.js",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "single-page-application"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "ksart-db",
+			"database_id": "0261362a-b7dc-4d89-bc53-171d4b8eea0d"
+		}
+	],
+	"vars": {
+		"ADMIN_TOKEN": "kseniaart134@gmail.com"
+	},
+	"r2_buckets": [
+		{
+			"binding": "IMAGES",
+			"bucket_name": "ksart-images"
+		}
+	]
 }
